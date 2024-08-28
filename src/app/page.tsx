@@ -1,7 +1,11 @@
+import ThemeSwitcher from "./components/ThemeSwitcher";
+
 export default function Home() {
   return (
-    <main>
+    <div>
       <h1>Ryan Klivansky</h1>
-    </main>
+      <h2>Software Engineer</h2>
+      <ThemeSwitcher />
+    </div>
   );
 }
