@@ -1,6 +1,7 @@
-import ThemeSwitcher from "./components/ThemeSwitcher";
+import { createClient } from "@/utils/supabase/server";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
 
-export default function Home() {
+export default async function Home() {
   return (
     <div>
       <h1>Ryan Klivansky</h1>
