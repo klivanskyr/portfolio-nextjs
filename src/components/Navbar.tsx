@@ -22,7 +22,7 @@ export default function Navbar() {
 
     const tabs = [
         { name: "Home", path: "/" },
-        { name: "About", path: "/about" },
+        { name: "Experience", path: "/experience" },
         { name: "Projects", path: "/projects" },
         { name: "Contact", path: "/contact" },
     ];
@@ -35,7 +35,7 @@ export default function Navbar() {
                     <div className={`${open ? "absolute top-0 left-0 primary-bg z-[1] w-dvw h-dvh border border-black" : "hidden"}`}>
                         <button className="p-2 navbar-mobile-button" onClick={() => setOpen(false)}><IoMdClose size={40} /></button>
                         <div className="navbar-mobile-menu">
-                            {tabs.map((tab) => <Link key={tab.name} href={tab.path}>{tab.name}</Link>)}
+                            {tabs.map((tab) => <Link key={tab.name} href={tab.path} onClick={() => setOpen(false)}>{tab.name}</Link>)}
                         </div>
                         <div className="absolute bottom-0 right-0 -translate-x-4 -translate-y-4">
                             <ThemeSwitcher />
@@ -47,7 +47,7 @@ export default function Navbar() {
     }
 
     return (
-        <div className="navbar-desktop relative">
+        <div className="navbar-desktop relative px-[200px]">
             <div className="py-2 lg:px-9 2xl:px-16 w-full flex justify-around">
                 {tabs.map((tab) => <Link key={tab.name} href={tab.path}>{tab.name}</Link>)}
             </div>
