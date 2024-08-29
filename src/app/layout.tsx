@@ -21,8 +21,8 @@ export default function RootLayout({
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className={inter.className}>
         <Providers>
-          <Navbar />
-          <main>
+          <main className="h-dvh">
+            <Navbar />
             {children}
           </main>
         </Providers>

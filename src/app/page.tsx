@@ -1,8 +1,7 @@
 export default async function Home() {
   return (
-    <div>
+    <div className="h-full flex justify-center items-center">
       <h1>Ryan Klivansky</h1>
-      <h2>Software Engineer</h2>
     </div>
   );
 }

@@ -51,7 +51,7 @@ export default function Navbar() {
             <div className="py-2 lg:px-9 2xl:px-16 w-full flex justify-around">
                 {tabs.map((tab) => <Link key={tab.name} href={tab.path}>{tab.name}</Link>)}
             </div>
-            <div className="absolute top-1/2 -translate-y-1/2 right-0">
+            <div className="absolute top-1/2 -translate-y-1/2 right-0 -translate-x-5">
                 <ThemeSwitcher />
             </div>
         </div>
