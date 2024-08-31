@@ -4,20 +4,29 @@
 
 :root {
   --primary-bg: rgb(255, 255, 255);
+  --secondary-bg: rgb(245, 245, 245);
   --primary-color: rgb(0, 0, 0);
   --secondary-color: rgb(57, 57, 57);
 }
 
 .dark {
   --primary-bg: rgb(25, 39, 52);
+  --secondary-bg: rgb(32, 50, 67);
   --primary-color: rgb(255, 255, 255);
   --secondary-color: rgb(178, 178, 178);
 }
 
 @layer base {
-  main {
+  body {
+    font-size: 16px;
     background-color: var(--primary-bg);
     color: var(--primary-color);
+  }
+
+  h1 {
+    color: var(--primary-color);
+    font-size: 3rem;
+    font-weight: 500;
   }
 
   h2 {
@@ -26,4 +35,40 @@
 }
 
 @layer components {
+  .navbar-desktop {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+  }
+  
+  .navbar-mobile-button {
+    width: fit-content;
+  }
+  
+  .navbar-mobile-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding-top: 8rem;
+    row-gap: 8rem;
+    align-items: center;
+    height: 100dvh;
+  }
+}
+
+@layer utilities {
+  .primary-color {
+    color: var(--primary-color);
+  }
+  .secondary-color {
+    color: var(--secondary-color);
+  }
+  .primary-bg {
+    background-color: var(--primary-bg);
+  }
+  .secondary-bg {
+    background-color: var(--secondary-bg);
+  }
 }

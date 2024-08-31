@@ -1,0 +1,1 @@
+export { MOBILE_WIDTH } from "./constants";
