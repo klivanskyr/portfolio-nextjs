@@ -52,7 +52,7 @@ export default function Navbar() {
     }
 
     return (
-        <div className="navbar-desktop relative px-[200px] z-50">
+        <div className="navbar-desktop px-[200px] z-50 primary-bg w-full fixed top-0 left-0">
             <div className="py-2 lg:px-9 2xl:px-16 w-full flex justify-around">
                 {tabs.map((tab) => <Link key={tab.name} href={tab.path}>{tab.name}</Link>)}
             </div>
