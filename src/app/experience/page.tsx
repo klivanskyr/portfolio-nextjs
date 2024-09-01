@@ -1,3 +1,5 @@
+import Card1 from "@/components/layouts/Card1";
+
 type Experience = {
     id: string;
     title: string;
@@ -73,35 +75,35 @@ const experiences: Experience[] = [
 export default async function Experience() {
     return (
         <div>
-            <div>
-                <h1>Education</h1>
+            <div className="flex flex-col px-16 py-8 gap-8">
+                <div className="flex flex-row justify-center items-center">
+                    <h1 className="text-2xl">Education</h1>
+                </div>
+                <div className="flex flex-col gap-4">
+                    {educations ? educations.map((education) => (
+                        <Card1
+                            key={education.id} 
+                            title={education.school}
+                            header={education.degree + " | " + education.end_date}
+                            body={education.notes.join("\n")}
+                        />
+                    )): <></>}
+                </div>
             </div>
-            <div>
-                {educations ? educations.map((education) => (
-                    <div key={education.id}>
-                        <h1>{education.school}</h1>
-                        <p>{education.degree}</p>
-                        <p>{education.end_date}</p>
-                        {education.notes.map((note, index) => (
-                            <p key={index}>{note}</p>
-                        ))}
-                    </div>
-                )): <></>}
-            </div>
-            <div>
-                <h1>Work Experience</h1>
-            </div>
-            <div>
-                {experiences ? experiences.map((experience) => (
-                    <div key={experience.id}>
-                        <h1>{experience.title}</h1>
-                        <p>{experience.company}</p>
-                        <p>{experience.start_date} - {experience.end_date}</p>
-                        {experience.descriptions.map((description, index) => (
-                            <p key={index}>{description}</p>
-                        ))}
-                    </div>
-                )): <></>}
+            <div className="flex flex-col px-16 py-8 gap-8">
+                <div className="flex flex-row justify-center items-center">
+                    <h1 className="text-2xl">Work Experience</h1>
+                </div>
+                <div className="flex flex-col gap-4">
+                    {experiences ? experiences.map((experience) => (
+                        <Card1
+                            key={experience.id} 
+                            title={experience.title}
+                            header={experience.company + " | " + experience.start_date + " - " + experience.end_date}
+                            body={experience.descriptions.join("\n")}
+                        />
+                    )): <></>}
+                </div>
             </div>
         </div>
     )

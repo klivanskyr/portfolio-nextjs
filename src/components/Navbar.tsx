@@ -9,6 +9,7 @@ import { IoIosMenu, IoMdClose } from "react-icons/io";
 export default function Navbar() {
     const [windowWidth, setWindowWidth] = useState<number>(0);
     const [open, setOpen] = useState<boolean>(false);
+    const [mounted, setMounted] = useState<boolean>(false);
 
     useEffect(() => {
         if (windowWidth > MOBILE_WIDTH) {
@@ -20,6 +21,8 @@ export default function Navbar() {
         return () => window.removeEventListener("resize", () => setWindowWidth(window.innerWidth));
     }, []);
 
+    useEffect(() => setMounted(true), []);
+
     const tabs = [
         { name: "Home", path: "/" },
         { name: "Experience", path: "/experience" },
@@ -27,6 +30,8 @@ export default function Navbar() {
         { name: "Contact", path: "/contact" },
     ];
 
+    if (!mounted) return <></>;
+    
     if (windowWidth < MOBILE_WIDTH) {
         return (
             <div className="relative">
@@ -47,7 +52,7 @@ export default function Navbar() {
     }
 
     return (
-        <div className="navbar-desktop relative px-[200px]">
+        <div className="navbar-desktop relative px-[200px] z-50">
             <div className="py-2 lg:px-9 2xl:px-16 w-full flex justify-around">
                 {tabs.map((tab) => <Link key={tab.name} href={tab.path}>{tab.name}</Link>)}
             </div>
