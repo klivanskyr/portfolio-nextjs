@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default async function Projects() {
-    const { data: projects, error: projectError } = await supabase.from("projects").select();
+    const { data: projects, error: projectError } = await supabase.from("projects").select(`*, skills ( id, name, image_url )`);
 
     console.log(projects);
     console.log(projectError);
@@ -33,9 +33,9 @@ export default async function Projects() {
                                 <p className="ml-2">{project.description}</p>
                             </div>
                             <div className="flex flex-row gap-2">
-                                {project.skills_used.map((skill: any) => (
+                                {project?.skills_used ? project.skills_used.map((skill: any) => (
                                     <p className="italic" key={skill.id}>{skill.name}</p>
-                                ))}
+                                )): <></>}
                             </div>
                         </div>
                     }
