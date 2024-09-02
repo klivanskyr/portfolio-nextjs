@@ -38,9 +38,9 @@ const contacts: Contact[] = [
 export default function Contact() {
     return (
         <div className="flex flex-row justify-center items-center w-full h-full">
-            <div className="grid grid-cols-2 items-center justify-items-center gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 items-center justify-items-center gap-6">
                 {contacts ? contacts.map((contact) => (
-                    <Link className="shadow-small border-2 rounded-lg p-12 w-full text-center" key={contact.id} href={contact.link} target={contact.open_in_new_tab ? "_blank" : ""}>
+                    <Link className="shadow-small border-2 rounded-lg py-12 px-16 xl:py-16 xl:px-20 w-full text-center" key={contact.id} href={contact.link} target={contact.open_in_new_tab ? "_blank" : ""}>
                         <h1>{contact.name}</h1>
                     </Link>
                 )) : <></>}
