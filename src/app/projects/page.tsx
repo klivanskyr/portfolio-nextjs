@@ -1,80 +1,15 @@
 import placeholder from "@/assets/placeholder_image.png";
 import { MediaText } from "@/components/layouts/MediaText";
+import { supabase } from "@/utils/supabase";
 import Image from "next/image";
 import Link from "next/link";
 
-type Skill = {
-    id: string,
-    name: string,
-    image_url: string
-}
+export default async function Projects() {
+    const { data: projects, error: projectError } = await supabase.from("projects").select();
 
-type Project = {
-    id: string,
-    name: string,
-    link?: string,
-    open_in_new_tab?: boolean,
-    image_url: string,
-    description: string,
-    skills_used: Skill[]
-}
+    console.log(projects);
+    console.log(projectError);
 
-const projects: Project[] = [
-    {
-        id: "1",
-        name: "Personal Website",
-        link: "https://ryanklivansky.com",
-        open_in_new_tab: false,
-        image_url: placeholder.src,
-        description: "My personal website to showcase my projects and skills.",
-        skills_used: [
-            {
-                id: "1",
-                name: "React",
-                image_url: placeholder.src
-            },
-            {
-                id: "2",
-                name: "Next.js",
-                image_url: placeholder.src
-            },
-            {
-                id: "3",
-                name: "TypeScript",
-                image_url: placeholder.src
-            }
-        ]
-    },
-    {
-        id: "2",
-        name: "3D Scene Reconstruction using Structure-From-Motion and NeRF",
-        link: "https://drive.google.com/drive/folders/16eO9h-zgj5sj4I5wf54rdTXtQtLy21wy?usp=sharing",
-        open_in_new_tab: true,
-        image_url: placeholder.src,
-        description: "Collaborated in a team of four to develop a 3D scene reconstruction pipeline leveraging Structure-from-Motion (SfM) and Neural Radiance Fields (NeRF), enabling the creation of photorealistic 3D models from 2D images.",
-        skills_used: [
-            {
-                id: "4",
-                name: "Python",
-                image_url: placeholder.src
-            },
-            {
-                id: "5",
-                name: "NumPy",
-                image_url: placeholder.src
-            },
-            {
-                id: "6",
-                name: "PyTorch",
-                image_url: placeholder.src
-            }
-        ]
-    }
-]
-        
-
-
-export default function Projects() {
     return (
         <div className="flex flex-col items-center pt-10">
             {projects ? projects.map((project, index) => (
@@ -98,7 +33,7 @@ export default function Projects() {
                                 <p className="ml-2">{project.description}</p>
                             </div>
                             <div className="flex flex-row gap-2">
-                                {project.skills_used.map((skill) => (
+                                {project.skills_used.map((skill: any) => (
                                     <p className="italic" key={skill.id}>{skill.name}</p>
                                 ))}
                             </div>
