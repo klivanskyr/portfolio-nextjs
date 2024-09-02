@@ -34,7 +34,7 @@ export default function Navbar() {
     
     if (windowWidth < MOBILE_WIDTH) {
         return (
-            <div className="relative">
+            <div className="relative z-50">
                 <button className="p-2 navbar-mobile-button" onClick={() => setOpen(true)}><IoIosMenu size={40} /></button>
                 {open ? (
                     <div className={`${open ? "absolute top-0 left-0 primary-bg z-[1] w-dvw h-dvh border border-black" : "hidden"}`}>
