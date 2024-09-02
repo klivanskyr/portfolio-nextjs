@@ -4,16 +4,6 @@ import { supabase } from "@/utils/supabase";
 import Image from "next/image";
 import Link from "next/link";
 
-interface Project {
-    id: number;
-    name: string;
-    description: string;
-    image_url: string | null;
-    link: string;
-    open_in_new_tab: boolean | null;
-    skills: { id: number, name: string, image_url: string | null }[];
-}
-
 export default async function Projects() {
     const { data: projects, error: projectError } = await supabase.from("projects").select(`*, skills!inner (*)`);
 

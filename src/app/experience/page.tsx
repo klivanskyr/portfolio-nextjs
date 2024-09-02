@@ -7,7 +7,7 @@ export default async function Experience() {
 
     return (
         <div>
-            <div className="flex flex-col px-16 py-8 gap-8">
+            <div className="flex flex-col px-8 md:px-16 py-8 gap-8">
                 <div className="flex flex-row justify-center items-center">
                     <h1 className="text-2xl">Education</h1>
                 </div>
@@ -22,7 +22,7 @@ export default async function Experience() {
                     )): <></>}
                 </div>
             </div>
-            <div className="flex flex-col px-16 py-8 gap-8">
+            <div className="flex flex-col px-8 md:px-16 py-8 gap-8">
                 <div className="flex flex-row justify-center items-center">
                     <h1 className="text-2xl">Work Experience</h1>
                 </div>
@@ -32,7 +32,7 @@ export default async function Experience() {
                             key={experience.id} 
                             title={experience.title}
                             header={experience.company + " | " + experience.start_date + " - " + experience.end_date}
-                            body={experience.descriptions.join("\n")}
+                            body={experience.descriptions}
                         />
                     )): <></>}
                 </div>

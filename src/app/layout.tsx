@@ -23,7 +23,7 @@ export default function RootLayout({
         <Providers>
           <main className="h-dvh">
             <Navbar />
-            <div className="p-[50px] h-dvh">
+            <div className="md:p-[50px] h-dvh">
               {children}
             </div>
           </main>
