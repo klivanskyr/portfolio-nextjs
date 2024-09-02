@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default async function Projects() {
-    const { data: projects, error: projectError } = await supabase.from("projects").select(`*, skills ( id, name, image_url )`);
+    const { data: projects, error: projectError } = await supabase.from("projects").select(`*, projectskills ( id, name, image_url )`);
 
     console.log(projects);
     console.log(projectError);
