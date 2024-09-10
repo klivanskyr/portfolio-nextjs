@@ -9,6 +9,7 @@ import { IoIosMenu, IoMdClose } from "react-icons/io";
 export default function Navbar() {
     const [windowWidth, setWindowWidth] = useState<number>(0);
     const [open, setOpen] = useState<boolean>(false);
+    const [mounted, setMounted] = useState<boolean>(false);
 
     useEffect(() => {
         if (windowWidth > MOBILE_WIDTH) {
@@ -18,7 +19,9 @@ export default function Navbar() {
         setWindowWidth(window.innerWidth);
         window.addEventListener("resize", () => setWindowWidth(window.innerWidth));
         return () => window.removeEventListener("resize", () => setWindowWidth(window.innerWidth));
-    }, []);
+    }, [windowWidth]);
+
+    useEffect(() => setMounted(true), []);
 
     const tabs = [
         { name: "Home", path: "/" },
@@ -27,9 +30,11 @@ export default function Navbar() {
         { name: "Contact", path: "/contact" },
     ];
 
+    if (!mounted) return <></>;
+    
     if (windowWidth < MOBILE_WIDTH) {
         return (
-            <div className="relative">
+            <div className="relative z-50">
                 <button className="p-2 navbar-mobile-button" onClick={() => setOpen(true)}><IoIosMenu size={40} /></button>
                 {open ? (
                     <div className={`${open ? "absolute top-0 left-0 primary-bg z-[1] w-dvw h-dvh border border-black" : "hidden"}`}>
@@ -47,7 +52,7 @@ export default function Navbar() {
     }
 
     return (
-        <div className="navbar-desktop relative px-[200px]">
+        <div className="navbar-desktop px-[200px] z-50 primary-bg w-full fixed top-0 left-0">
             <div className="py-2 lg:px-9 2xl:px-16 w-full flex justify-around">
                 {tabs.map((tab) => <Link key={tab.name} href={tab.path}>{tab.name}</Link>)}
             </div>
