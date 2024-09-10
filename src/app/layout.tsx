@@ -21,12 +21,10 @@ export default function RootLayout({
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className={inter.className}>
         <Providers>
-          <main className="h-dvh">
-            <Navbar />
-            <div className="md:p-[50px] h-dvh">
+            <main className="min-h-dvh">
+              <Navbar />
               {children}
-            </div>
-          </main>
+            </main>
         </Providers>
       </body>
     </html>

@@ -8,7 +8,7 @@ export default async function Projects() {
     const { data: projects, error: projectError } = await supabase.from("projects").select(`*, skills!inner (*)`);
 
     return (
-        <div className="flex flex-col items-center pt-10">
+        <div className="flex flex-col items-center pt-12">
             {projects ? projects.map((project, index) => (
                 <MediaText
                     className="my-8 p-4 w-[70%] min-h-[200px] gap-4 border-2" 
