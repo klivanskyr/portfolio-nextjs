@@ -14,13 +14,13 @@ export default async function Projects() {
                     className="my-8 p-4 w-[70%] min-h-[200px] gap-4 border-2" 
                     key={project.id} 
                     left={project.link 
-                        ?  <div className="flex flex-col justify-center">
+                        ?  <div className="-m-1 flex flex-col justify-center w-[275px] relative ">
                                 <Link href={project.link} target={project.open_in_new_tab ? "_blank" : ""}>
-                                    <Image src={project.image_url || placeholder.src} alt={project.name} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }}/>
+                                    <Image src={project.image_url || placeholder.src} alt={project.name} fill />
                                 </Link>
                             </div>
                         :   <div className="flex flex-col justify-center">
-                                <Image src={project.image_url || placeholder.src} alt={project.name} width={0} height={0} sizes="100vw" style={{ width: '100%', height: 'auto' }}/>
+                                <Image src={project.image_url || placeholder.src} alt={project.name} fill />
                             </div>
                     } 
                     right={
