@@ -13,7 +13,7 @@ type CardProps = {
     reversed?: boolean;
 };
 
-export default function Card2({ title, description, imageUrl, link, openInNewTab, skills, reversed }: CardProps) {
+export default function Card2({ size, title, description, imageUrl, link, openInNewTab, skills, reversed }: CardProps) {
     return (
         <div className={`border-2 shadow-medium rounded-lg flex ${reversed ? 'flex-row-reverse' : 'flex-row'} gap-4`}>
             <div className={`relative ${size === "small" ? "w-1/3" : "w-full h-[200px] md:h-[400px] lg:h-[500px]"}`}>
