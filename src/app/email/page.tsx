@@ -106,8 +106,8 @@ export default function Email() {
     }
 
     return (
-        <div className="flex flex-row w-full h-full justify-center items-center">
-            <form id="emailForm" onSubmit={(e) => handleSubmit(e)} className="max-w-[1500px] w-4/5 grid grid-cols-1 gap-4 shadow-large p-8 rounded-large border dark:border-none dark:secondary-bg">
+        <div className="flex flex-row w-full h-full justify-center items-center pt-36">
+            <form id="emailForm" onSubmit={(e) => handleSubmit(e)} className="max-w-[1500px] w-[90%] md:w-4/5 grid grid-cols-1 gap-4 shadow-large p-8 rounded-large border dark:border-none dark:secondary-bg">
                 <Input color={`${error.name ? "danger" : "primary"}`} classNames={{ inputWrapper: "border-default-300" }} value={input.name} onValueChange={(newValue) => setInput({ ...input, name: newValue })} label="Name" isRequired size="lg" variant="bordered" />
                 <Input color={`${error.email ? "danger" : "primary"}`} classNames={{ inputWrapper: "border-default-300" }} value={input.email} onValueChange={(newValue) => setInput({ ...input, email: newValue })} label="Email" isRequired size="lg" variant="bordered" />
                 <Input color={`${error.subject ? "danger" : "primary"}`} classNames={{ inputWrapper: "border-default-300" }} value={input.subject} onValueChange={(newValue) => setInput({ ...input, subject: newValue })} label="Subject" isRequired size="lg" variant="bordered" />
