@@ -1,22 +1,50 @@
-import placeholder from "@/assets/placeholder_image.png";
-import { MediaText } from "@/components/layouts/MediaText";
+import ProjectsList from "@/components/ProjectsList";
+import { Project } from "@/types";
 import { supabase } from "@/utils/supabase";
-import Image from "next/image";
-import Link from "next/link";
 
-export default async function Projects() {
+export const revalidate = 0;
+
+export default async function Projects_Page() {
     const { data: projects, error: projectError } = await supabase.from("projects").select(`*, skills!inner (*)`);
 
+    // Maps the projects to the correct format because supabase returns the data in a different format
+    const transformedProjects: Project[] | undefined = projects?.map((project: any) => ({
+        ...project,
+        openInNewTab: project.open_in_new_tab,
+        imageUrl: project.image_url,
+    }));
+
     return (
-        <div className="flex flex-col items-center pt-12">
-            {projects ? projects.map((project, index) => (
+        <div className="py-8 md:py-36 flex flex-col items-center">
+            {transformedProjects && <ProjectsList projects={transformedProjects} />}
+        </div>
+    )
+}
+
+{/* {projects && 
+        <Search items={projects}>
+            {filteredItems => <AdjustableGrid items={filteredItems} />}
+        </Search>
+} */}
+
+{/* <Card2
+            size="small"
+            title="Test"
+            description="Test"
+            imageUrl={placeholder.src}
+            link=""
+            openInNewTab={false}
+            skills={[{ id: "1", name: "Test" }]}
+            reversed={false}
+        /> */}
+{/* {projects ? projects.map((project, index) => (
                 <MediaText
-                    className="my-8 p-4 w-[70%] min-h-[200px] gap-4 border-2" 
+                    className="my-8 px-4 py-8 w-[90%] md:w-[70%] min-h-[200px] lg:gap-4 border-2 shadow-medium rounded-lg" 
                     key={project.id} 
                     left={project.link 
-                        ?  <div className="-m-1 flex flex-col justify-center w-[275px] relative ">
+                        ?  <div className="w-full h-[200px] md:h-[400px] lg:h-[500px] relative">
                                 <Link href={project.link} target={project.open_in_new_tab ? "_blank" : ""}>
-                                    <Image src={project.image_url || placeholder.src} alt={project.name} fill />
+                                    <Image src={project.image_url || placeholder.src} alt={project.name} fill style={{ objectFit: 'contain' }} />
                                 </Link>
                             </div>
                         :   <div className="flex flex-col justify-center">
@@ -24,21 +52,20 @@ export default async function Projects() {
                             </div>
                     } 
                     right={
-                        <div className="flex flex-col justify-between h-full p-2 gap-4 max-w-[70%]">
-                            <div className="flex flex-col">
-                                <h2 className="font-semibold">{project.name}</h2>
-                                <p className="ml-2">{project.description}</p>
-                            </div>
-                            <div className="flex flex-row gap-2">
-                                {project.skills ? project.skills.map((skill: any) => (
-                                    <p className="italic" key={skill.id}>{skill.name}</p>
-                                )): <></>}
+                        <div className="flex flex-col justify-center h-full w-full">
+                            <div className="flex flex-col justify-between w-full gap-8">
+                                <div className="flex flex-col">
+                                    <h2 className="font-bold">{project.name}</h2>
+                                    <p className="ml-2">{project.description}</p>
+                                </div>
+                                <div className="flex flex-row gap-2 py-4">
+                                    {project.skills ? project.skills.map((skill: any) => (
+                                        <p className="italic font-medium" key={skill.id}>{skill.name}</p>
+                                    )): <></>}
+                                </div>
                             </div>
                         </div>
                     }
                     reversed={index % 2 == 0 ? false : true}
                     />
-            )) : <></>}
-        </div>
-    )
-}
+            )) : <></>} */}
