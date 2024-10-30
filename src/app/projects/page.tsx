@@ -2,8 +2,6 @@ import ProjectsList from "@/components/ProjectsList";
 import { Project } from "@/types";
 import { supabase } from "@/utils/supabase";
 
-export const revalidate = 0;
-
 export default async function Projects_Page() {
     const { data: projects, error: projectError } = await supabase.from("projects").select(`*, skills!inner (*)`);
 
