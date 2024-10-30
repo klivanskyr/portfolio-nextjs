@@ -5,6 +5,7 @@ import ThemeSwitcher from "./ThemeSwitcher";
 import { useEffect, useState } from "react";
 import { MOBILE_WIDTH } from "@/utils/constants";
 import { IoIosMenu, IoMdClose } from "react-icons/io";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Navbar() {
     const [windowWidth, setWindowWidth] = useState<number>(0);
@@ -35,20 +36,49 @@ export default function Navbar() {
     if (windowWidth < MOBILE_WIDTH) {
         return (
             <div className="relative z-50">
-                <button className="p-2 navbar-mobile-button" onClick={() => setOpen(true)}><IoIosMenu size={40} /></button>
-                {open ? (
-                    <div className={`${open ? "absolute top-0 left-0 primary-bg z-[1] w-dvw h-dvh border border-black" : "hidden"}`}>
-                        <button className="p-2 navbar-mobile-button" onClick={() => setOpen(false)}><IoMdClose size={40} /></button>
-                        <div className="navbar-mobile-menu">
-                            {tabs.map((tab) => <Link key={tab.name} href={tab.path} onClick={() => setOpen(false)}>{tab.name}</Link>)}
-                        </div>
-                        <div className="absolute bottom-0 right-0 -translate-x-4 -translate-y-4">
-                            <ThemeSwitcher />
-                        </div>
-                    </div>
-                ) : <></>}
+                <button 
+                    className="p-2 navbar-mobile-button" 
+                    onClick={() => setOpen(true)}
+                >
+                    <IoIosMenu size={40} />
+                </button>
+    
+                <AnimatePresence>
+                    {open && (
+                        <motion.div
+                            className="absolute top-0 left-0 primary-bg z-[1] w-dvw h-dvh border border-black"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.15 }}
+                        >
+                            <button 
+                                className="p-2 navbar-mobile-button" 
+                                onClick={() => setOpen(false)}
+                            >
+                                <IoMdClose size={40} />
+                            </button>
+    
+                            <div className="navbar-mobile-menu">
+                                {tabs.map((tab) => (
+                                    <Link 
+                                        key={tab.name} 
+                                        href={tab.path} 
+                                        onClick={() => setOpen(false)}
+                                    >
+                                        {tab.name}
+                                    </Link>
+                                ))}
+                            </div>
+    
+                            <div className="absolute bottom-0 right-0 -translate-x-4 -translate-y-4">
+                                <ThemeSwitcher />
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
-        )
+        );
     }
 
     return (
